@@ -38,7 +38,7 @@
           </span>
         </span>
         <span>
-          <a href="#/posts/{{$index}}">Comments</a>
+        <a href="#/posts/{{$index}}">Comments</a>
         </span>
 
       </div>
@@ -65,6 +65,8 @@
 </script>
 
 <script type="text/ng-template" id="/posts.html">
+
+
   <div class="page-header">
     <h3>
       <a ng-show="post.link" href="{{post.link}}">
@@ -84,6 +86,20 @@
       {{comment.body}}
     </span>
   </div>
+
+  <form ng-submit="addComment()"
+    style="margin-top:30px;">
+    <h3>Add a new comment</h3>
+
+    <div class="form-group">
+      <input type="text"
+      class="form-control"
+      placeholder="Comment"
+      ng-model="body"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+
 </script>
 
 </body>
