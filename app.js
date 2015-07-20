@@ -11,13 +11,19 @@ $stateProvider
 		controller: 'MainCtrl'
 	})
 
+	.state('posts',{
+		url: '/posts/{id}',
+		templateUrl: '/posts.html',
+		controller:'PostsCtrl'
+	});
+
 $urlRouterProvider.otherwise('home');
 
 }])
 .factory('posts',[function(){
 
 var postStore = {
-	posts: [{title: 'Hello' , link:'helloworld.org', upvotes:9}]
+	posts: []
 }
 
 return postStore;
@@ -32,8 +38,12 @@ return postStore;
 		$scope.posts.push({
 			title: $scope.title , 
 			link:$scope.link,
-			upvotes:4
-			});
+			upvotes:0,
+			comments: [
+			{author:'Joe', body:' Cool posts',upvotes:0},
+			{author:'Bob', body:' great posts',upvotes:3}
+			]
+		});
 		$scope.title = '';
 		$scope.link = '';
   } 
@@ -41,4 +51,15 @@ return postStore;
   $scope.incrementUpvotes = function(post){
 			post.upvotes += 1;
   }
-}]);
+}])
+.controller('PostsCtrl',[
+'$scope',
+'$stateParams',
+'posts',
+function($scope,$stateParams,posts){
+	$scope.post = posts.posts[$stateParams.id];
+
+
+}
+
+	])
