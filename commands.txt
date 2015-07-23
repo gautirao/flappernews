@@ -1,0 +1,4 @@
+Mac commands :
+
+1.starting node :  npm start
+2.starting mongodb : mongod --dbpath /Users/gouthamrao/Documents/learn/thinkster/mongodbdata/db 
